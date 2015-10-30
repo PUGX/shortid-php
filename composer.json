@@ -1,0 +1,39 @@
+{
+    "name": "pugx/shortid-php",
+    "description": "An implementation of shortid in PHP",
+    "keywords": ["shortid", "id", "uuid"],
+    "homepage": "http://pugx.org/",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Massimiliano Arione",
+            "email": "garakkio@gmail.com"
+        },
+        {
+            "name": "The Community",
+            "homepage": "https://github.com/pugx/shortid-php"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/pugx/shortid-php/issues"
+    },
+    "require": {
+        "php": "^5.4",
+        "ircmaxell/random-lib": "^1.1"
+    },
+    "require-dev":{
+        "phpunit/phpunit": "4.*"
+    },
+    "autoload": {
+        "psr-4": { "PUGX\\Shortid\\": "src" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
+}
