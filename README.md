@@ -1,6 +1,12 @@
 ShortId
 =======
 
+[![Total Downloads](https://poser.pugx.org/pugx/shortid-php/downloads.png)](https://packagist.org/packages/pugx/shortid-php)
+[![Build Status](https://travis-ci.org/PUGX/shortid-php.png?branch=master)](https://travis-ci.org/PUGX/shortid-php)
+[![Code Climate](https://codeclimate.com/github/PUGX/shortid-php/badges/gpa.svg)](https://codeclimate.com/github/PUGX/shortid-php)
+[![Test Coverage](https://codeclimate.com/github/PUGX/shortid-php/badges/coverage.svg)](https://codeclimate.com/github/PUGX/shortid-php/coverage)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/058a0905-b889-49a4-9752-766787fcaeae/mini.png)](https://insight.sensiolabs.com/projects/058a0905-b889-49a4-9752-766787fcaeae)
+
 This library is an implementation of [ShortId](https://github.com/dylang/shortid) for PHP.
 
 Basic usage
