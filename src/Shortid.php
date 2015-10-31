@@ -32,7 +32,7 @@ class Shortid
     /**
      * @param Factory
      */
-    public static function setFactory($factory)
+    public static function setFactory(Factory $factory)
     {
         self::$factory = $factory;
     }
