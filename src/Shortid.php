@@ -36,4 +36,12 @@ class Shortid
     {
         self::$factory = $factory;
     }
+
+    /**
+     * @return bool
+     */
+    public static function isValid()
+    {
+        return true;    // TODO
+    }
 }
