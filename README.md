@@ -43,3 +43,9 @@ Shortid::setFactory($factory);
 $id = Shortid::generate();
 
 ```
+
+Doctrine
+========
+
+If you want to use ShortId with Doctrine ORM, take a look to
+[ShortId Doctrine type](https://github.com/PUGX/shortid-doctrine).
