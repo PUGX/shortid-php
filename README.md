@@ -49,3 +49,11 @@ Doctrine
 
 If you want to use ShortId with Doctrine ORM, take a look to
 [ShortId Doctrine type](https://github.com/PUGX/shortid-doctrine).
+
+
+Doctrine and Symfony
+====================
+
+If you want to use ShortId with Doctrine ORM and Symfony framework, take a look to
+[ShortId Doctrine type bundle](https://github.com/PUGX/shortid-doctrine-bundle).
+
