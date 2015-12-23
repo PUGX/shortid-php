@@ -10,11 +10,17 @@ class Shortid
     private static $factory;
 
     /**
+     * @param int    $length
+     * @param string $alphabet
+     *
      * @return string
      */
-    public static function generate()
+    public static function generate($length = 7, $alphabet = null)
     {
-        return self::getFactory()->generate();
+        self::getFactory()->checkLength($length);
+        self::getFactory()->checkAlphabet($alphabet);
+
+        return self::getFactory()->generate($length, $alphabet);
     }
 
     /**
@@ -39,15 +45,17 @@ class Shortid
 
     /**
      * @param string $value
+     * @param int    $length
+     * @param string $alphabet
      *
      * @return bool
      */
-    public static function isValid($value)
+    public static function isValid($value, $length = 7, $alphabet = null)
     {
-        $alphabet = preg_quote(self::getFactory()->getAlphabet());
+        $alphabet = preg_quote($alphabet ?: self::getFactory()->getAlphabet());
         $matches = [];
-        $ok = preg_match('/(['.$alphabet.']{5})/', preg_quote($value, '/'), $matches);
+        $ok = preg_match('/(['.$alphabet.']{'.$length.'})/', preg_quote($value, '/'), $matches);
 
-        return $ok > 0 && strlen($matches[0]) == 5;
+        return $ok > 0 && strlen($matches[0]) == $length;
     }
 }

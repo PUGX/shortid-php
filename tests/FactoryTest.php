@@ -78,9 +78,9 @@ class FactoryTest extends PHPUnit_Framework_TestCase
     public function wrongAlphabetsProvider()
     {
         return array(
-            array(null),
-            array('test'),
-            array(sha1(rand())),
+            'null' => array(null),
+            'test' => array('test'),
+            'rand' => array(sha1(rand())),
         );
     }
 
@@ -89,5 +89,27 @@ class FactoryTest extends PHPUnit_Framework_TestCase
         $factory = Factory::getFactory();
 
         $this->assertInstanceOf('RandomLib\Factory', $factory);
+    }
+
+    public function testSetLength()
+    {
+        $this->factory->setLength(5);
+        $this->assertSame(5, $this->factory->getLength());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetWrongLengthType()
+    {
+        $this->factory->setLength('invalid');
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     */
+    public function testSetWrongLengthRange()
+    {
+        $this->factory->setLength(0);
     }
 }

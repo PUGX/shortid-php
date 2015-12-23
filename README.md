@@ -12,7 +12,7 @@ This library is an implementation of [ShortId](https://github.com/dylang/shortid
 Basic usage
 ===========
 
-Just call ``PUGX\Shortid\Shortid::generate()`` to get a random string with length 7, like "MfiYIvI".
+Just call ``PUGX\Shortid\Shortid::generate()`` to get a random string with default length 7, like "MfiYIvI".
 
 ``` php
 use PUGX\Shortid\Shortid;
@@ -26,7 +26,7 @@ $id = Shortid::generate();
 Advanced usage
 ==============
 
-In the following example, you can see how to change the basic alphabet.
+In the following example, you can see how to change the basic alphabet and default length.
 
 Default alphabet uses all letters (lowercase and uppcercase), all numbers, underscore, and hypen.
 
@@ -37,10 +37,22 @@ use PUGX\Shortid\Shortid;
 require_once __DIR__.'/vendor/autoload.php';
 
 $factory = new Factory();
-$factory->setAlphabet('é123456789àbcdefghìjklmnòpqrstùvwxyzABCDEFGHIJKLMNOPQRSTUVWX.!@|');
+$factory->setAlphabet('é123456789àbcdefghìjklmnòpqrstùvwxyzABCDEFGHIJKLMNOPQRSTUVWX.!@|');    // must be 64 characters long
+$factory->setLength(9);    // accepts values between 2 and 20
 Shortid::setFactory($factory);
 
 $id = Shortid::generate();
+```
+
+As alternative, you can customize single generations:
+
+``` php
+use PUGX\Shortid\Shortid;
+
+require_once __DIR__.'/vendor/autoload.php';
+
+$id9 = Shortid::generate(9, 'é123456789àbcdefghìjklmnòpqrstùvwxyzABCDEFGHIJKLMNOPQRSTUVWX.!@|');
+$id5 = Shortid::generate(5);
 
 ```
 
@@ -56,4 +68,3 @@ Doctrine and Symfony
 
 If you want to use ShortId with Doctrine ORM and Symfony framework, take a look to
 [ShortId Doctrine type bundle](https://github.com/PUGX/shortid-doctrine-bundle).
-
