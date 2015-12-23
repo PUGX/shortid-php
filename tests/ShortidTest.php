@@ -7,6 +7,11 @@ use PUGX\Shortid\Shortid;
 
 class ShortidTest extends PHPUnit_Framework_TestCase
 {
+    protected function tearDown()
+    {
+        Shortid::setFactory(null);
+    }
+
     public function testGenerate()
     {
         $generatedString = Shortid::generate();
@@ -27,5 +32,15 @@ class ShortidTest extends PHPUnit_Framework_TestCase
         Shortid::setFactory($factoryMock);
 
         $this->assertSame($factoryMock, Shortid::getFactory());
+    }
+
+    public function testIsValid()
+    {
+        $this->assertTrue(Shortid::isValid('shortid'));
+    }
+
+    public function testIsNotValid()
+    {
+        $this->assertFalse(Shortid::isValid('/(;#!'));
     }
 }

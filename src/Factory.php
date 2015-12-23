@@ -37,6 +37,14 @@ class Factory
     }
 
     /**
+     * @return string
+     */
+    public function getAlphabet()
+    {
+        return $this->alphabet;
+    }
+
+    /**
      * @return RandomLibFactory
      */
     public static function getFactory()

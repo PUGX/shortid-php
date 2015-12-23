@@ -32,16 +32,22 @@ class Shortid
     /**
      * @param Factory
      */
-    public static function setFactory(Factory $factory)
+    public static function setFactory(Factory $factory = null)
     {
         self::$factory = $factory;
     }
 
     /**
+     * @param string $value
+     *
      * @return bool
      */
-    public static function isValid()
+    public static function isValid($value)
     {
-        return true;    // TODO
+        $alphabet = preg_quote(self::getFactory()->getAlphabet());
+        $matches = [];
+        $ok = preg_match('/(['.$alphabet.']{5})/', preg_quote($value, '/'), $matches);
+
+        return $ok > 0 && strlen($matches[0]) == 5;
     }
 }
