@@ -30,8 +30,8 @@ class FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function alphabetsProvider()
     {
-        $alphabets = array();
-        $chars = array();
+        $alphabets = [];
+        $chars = [];
 
         for ($i = 1; $i <= 65533; ++$i) {
             $chars[] = mb_convert_encoding("&#$i;", 'UTF-8', 'HTML-ENTITIES');
@@ -41,7 +41,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 
         for ($i = 0; $i < 100; ++$i) {
             shuffle($chars);
-            $alphabets[] = array(implode(null, array_slice($chars, 0, 64)));
+            $alphabets[] = [implode(null, array_slice($chars, 0, 64))];
         }
 
         return $alphabets;
@@ -77,11 +77,11 @@ class FactoryTest extends PHPUnit_Framework_TestCase
      */
     public function wrongAlphabetsProvider()
     {
-        return array(
-            'null' => array(null),
-            'test' => array('test'),
-            'rand' => array(sha1(rand())),
-        );
+        return [
+            'null' => [null],
+            'test' => ['test'],
+            'rand' => [sha1(rand())],
+        ];
     }
 
     public function testGetFactory()
