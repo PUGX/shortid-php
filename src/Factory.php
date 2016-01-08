@@ -22,11 +22,17 @@ class Factory
     private static $factory;
 
     /**
+     * @param int    $length
+     * @param string $alphabet
+     *
      * @return string
      */
-    public function generate($length = 7, $alphabet = null)
+    public function generate($length = null, $alphabet = null)
     {
-        return self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet ?: $this->alphabet);
+        $length = is_null($length) ? $this->length : $length;
+        $alphabet = is_null($alphabet) ? $this->alphabet : $alphabet;
+
+        return self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet);
     }
 
     /**
@@ -76,10 +82,14 @@ class Factory
     }
 
     /**
-     * @param int $length
+     * @param int  $length
+     * @param bool $strict
      */
-    public function checkLength($length)
+    public function checkLength($length, $strict = false)
     {
+        if (is_null($length) && !$strict) {
+            return;
+        }
         if (!is_int($length)) {
             throw new \InvalidArgumentException(sprintf('Invalid type: %s', gettype($length)));
         }

@@ -15,7 +15,7 @@ class Shortid
      *
      * @return string
      */
-    public static function generate($length = 7, $alphabet = null)
+    public static function generate($length = null, $alphabet = null)
     {
         self::getFactory()->checkLength($length);
         self::getFactory()->checkAlphabet($alphabet);
@@ -50,8 +50,9 @@ class Shortid
      *
      * @return bool
      */
-    public static function isValid($value, $length = 7, $alphabet = null)
+    public static function isValid($value, $length = null, $alphabet = null)
     {
+        $length = is_null($length) ? self::getFactory()->getLength() : $length;
         $alphabet = preg_quote($alphabet ?: self::getFactory()->getAlphabet());
         $matches = [];
         $ok = preg_match('/(['.$alphabet.']{'.$length.'})/', preg_quote($value, '/'), $matches);
