@@ -43,4 +43,13 @@ class ShortidTest extends PHPUnit_Framework_TestCase
     {
         $this->assertFalse(Shortid::isValid('/(;#!'));
     }
+
+    public function testIsValidWithRegexChar()
+    {
+        $factory = Shortid::getFactory();
+        $factory->setAlphabet('hìjklmnòpqrstùvwxyzABCDEFGHIJKLMNOPQRSTUVWX.\+*?[^]$(){}=!<>|:-/');
+        Shortid::setFactory($factory);
+
+        $this->assertTrue(Shortid::isValid('slsh/]?'));
+    }
 }
