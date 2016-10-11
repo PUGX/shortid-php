@@ -14,9 +14,9 @@ class ShortidTest extends PHPUnit_Framework_TestCase
 
     public function testGenerate()
     {
-        $generatedString = Shortid::generate();
+        $generated = Shortid::generate();
 
-        $this->assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generatedString);
+        $this->assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generated->__toString());
     }
 
     public function testGetFactory()

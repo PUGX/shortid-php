@@ -5,9 +5,30 @@ namespace PUGX\Shortid;
 class Shortid
 {
     /**
+     * @var string
+     */
+    private $id;
+
+    /**
      * @var Factory
      */
     private static $factory;
+
+    /**
+     * @param string $id
+     */
+    public function __construct($id = null)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->id;
+    }
 
     /**
      * @param int    $length

@@ -20,9 +20,9 @@ class FactoryTest extends PHPUnit_Framework_TestCase
 
     public function testGenerate()
     {
-        $generatedString = $this->factory->generate();
+        $generated = $this->factory->generate();
 
-        $this->assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generatedString);
+        $this->assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generated->__toString());
     }
 
     /**

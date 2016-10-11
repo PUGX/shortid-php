@@ -25,14 +25,15 @@ class Factory
      * @param int    $length
      * @param string $alphabet
      *
-     * @return string
+     * @return Shortid
      */
     public function generate($length = null, $alphabet = null)
     {
         $length = is_null($length) ? $this->length : $length;
         $alphabet = is_null($alphabet) ? $this->alphabet : $alphabet;
+        $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet);
 
-        return self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet);
+        return new Shortid($id);
     }
 
     /**
