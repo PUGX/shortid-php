@@ -28,7 +28,7 @@ class ShortidTest extends PHPUnit_Framework_TestCase
 
     public function testSetFactory()
     {
-        $factoryMock = $this->getMock('PUGX\Shortid\Factory');
+        $factoryMock = $this->getMockBuilder('PUGX\Shortid\Factory')->getMock();
         Shortid::setFactory($factoryMock);
 
         $this->assertSame($factoryMock, Shortid::getFactory());
