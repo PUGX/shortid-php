@@ -27,7 +27,7 @@ class Factory
      *
      * @return Shortid
      */
-    public function generate($length = null, $alphabet = null)
+    public function generate(int $length = null, string $alphabet = null): Shortid
     {
         $length = is_null($length) ? $this->length : $length;
         $alphabet = is_null($alphabet) ? $this->alphabet : $alphabet;
@@ -39,7 +39,7 @@ class Factory
     /**
      * @param string $alphabet
      */
-    public function setAlphabet($alphabet)
+    public function setAlphabet(string $alphabet)
     {
         $this->checkAlphabet($alphabet, true);
         $this->alphabet = $alphabet;
@@ -48,7 +48,7 @@ class Factory
     /**
      * @param int $length
      */
-    public function setLength($length)
+    public function setLength(int $length)
     {
         $this->checkLength($length);
         $this->length = $length;
@@ -57,7 +57,7 @@ class Factory
     /**
      * @return string
      */
-    public function getAlphabet()
+    public function getAlphabet(): string
     {
         return $this->alphabet;
     }
@@ -65,7 +65,7 @@ class Factory
     /**
      * @return int
      */
-    public function getLength()
+    public function getLength(): int
     {
         return $this->length;
     }
@@ -73,7 +73,7 @@ class Factory
     /**
      * @return RandomLibFactory
      */
-    public static function getFactory()
+    public static function getFactory(): RandomLibFactory
     {
         if (null === self::$factory) {
             self::$factory = new RandomLibFactory();
@@ -86,13 +86,10 @@ class Factory
      * @param int  $length
      * @param bool $strict
      */
-    public function checkLength($length, $strict = false)
+    public function checkLength(int $length = null, bool $strict = false)
     {
         if (is_null($length) && !$strict) {
             return;
-        }
-        if (!is_int($length)) {
-            throw new \InvalidArgumentException(sprintf('Invalid type: %s', gettype($length)));
         }
         if ($length < 2 || $length > 20) {
             throw new \InvalidArgumentException('Invalid length.');
@@ -103,7 +100,7 @@ class Factory
      * @param string $length
      * @param bool   $strict
      */
-    public function checkAlphabet($alphabet = null, $strict = false)
+    public function checkAlphabet(string $alphabet = null, bool $strict = false)
     {
         if (is_null($alphabet) && !$strict) {
             return;

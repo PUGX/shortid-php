@@ -2,11 +2,11 @@
 
 namespace PUGX\Shortid\Test;
 
-use PHPUnit_Framework_Assert;
-use PHPUnit_Framework_TestCase;
+use PHPUnit_Framework_Assert as Assert;
+use PHPUnit_Framework_TestCase as TestCase;
 use PUGX\Shortid\Factory;
 
-class FactoryTest extends PHPUnit_Framework_TestCase
+class FactoryTest extends TestCase
 {
     /**
      * @var Factory
@@ -52,11 +52,11 @@ class FactoryTest extends PHPUnit_Framework_TestCase
      *
      * @dataProvider alphabetsProvider
      */
-    public function testSetAlphabet($alphabet)
+    public function testSetAlphabet(string $alphabet)
     {
         $this->factory->setAlphabet($alphabet);
 
-        $newAlphabet = PHPUnit_Framework_Assert::readAttribute($this->factory, 'alphabet');
+        $newAlphabet = Assert::readAttribute($this->factory, 'alphabet');
 
         $this->assertSame($alphabet, $newAlphabet);
     }
@@ -67,7 +67,7 @@ class FactoryTest extends PHPUnit_Framework_TestCase
      * @dataProvider wrongAlphabetsProvider
      * @expectedException \InvalidArgumentException
      */
-    public function testSetWrongAlphabet($alphabet)
+    public function testSetWrongAlphabet(string $alphabet)
     {
         $this->factory->setAlphabet($alphabet);
     }
@@ -75,10 +75,9 @@ class FactoryTest extends PHPUnit_Framework_TestCase
     /**
      * @return array[]
      */
-    public function wrongAlphabetsProvider()
+    public function wrongAlphabetsProvider(): array
     {
         return [
-            'null' => [null],
             'test' => ['test'],
             'rand' => [sha1(rand())],
         ];
@@ -97,8 +96,13 @@ class FactoryTest extends PHPUnit_Framework_TestCase
         $this->assertSame(5, $this->factory->getLength());
     }
 
+    public function testiCheckLength()
+    {
+        $this->factory->checkLength(null, false);
+    }
+
     /**
-     * @expectedException \InvalidArgumentException
+     * @expectedException \TypeError
      */
     public function testSetWrongLengthType()
     {

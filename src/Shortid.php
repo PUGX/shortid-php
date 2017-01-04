@@ -17,7 +17,7 @@ class Shortid
     /**
      * @param string $id
      */
-    public function __construct($id = null)
+    public function __construct(string $id = null)
     {
         $this->id = $id;
     }
@@ -25,7 +25,7 @@ class Shortid
     /**
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return $this->id;
     }
@@ -34,11 +34,13 @@ class Shortid
      * @param int    $length
      * @param string $alphabet
      *
-     * @return string
+     * @return Shortid
      */
-    public static function generate($length = null, $alphabet = null)
+    public static function generate(int $length = null, string $alphabet = null): Shortid
     {
-        self::getFactory()->checkLength($length);
+        if (!is_null($length)) {
+            self::getFactory()->checkLength($length);
+        }
         self::getFactory()->checkAlphabet($alphabet);
 
         return self::getFactory()->generate($length, $alphabet);
@@ -47,7 +49,7 @@ class Shortid
     /**
      * @return Factory
      */
-    public static function getFactory()
+    public static function getFactory(): Factory
     {
         if (null === self::$factory) {
             self::$factory = new Factory();
@@ -71,7 +73,7 @@ class Shortid
      *
      * @return bool
      */
-    public static function isValid($value, $length = null, $alphabet = null)
+    public static function isValid(string $value, int $length = null, string $alphabet = null): bool
     {
         $length = is_null($length) ? self::getFactory()->getLength() : $length;
         $alphabet = preg_quote($alphabet ?: self::getFactory()->getAlphabet(), '/');

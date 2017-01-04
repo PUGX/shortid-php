@@ -2,10 +2,10 @@
 
 namespace PUGX\Shortid\Test;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit_Framework_TestCase as TestCase;
 use PUGX\Shortid\Shortid;
 
-class ShortidTest extends PHPUnit_Framework_TestCase
+class ShortidTest extends TestCase
 {
     protected function tearDown()
     {
@@ -17,6 +17,13 @@ class ShortidTest extends PHPUnit_Framework_TestCase
         $generated = Shortid::generate();
 
         $this->assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generated->__toString());
+    }
+
+    public function testGenerateWithLength()
+    {
+        $generated = Shortid::generate(8);
+
+        $this->assertRegExp('/^[a-z0-9\_\-]{8,8}$/i', $generated->__toString());
     }
 
     public function testGetFactory()
