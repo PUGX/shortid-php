@@ -2,8 +2,8 @@
 
 namespace PUGX\Shortid\Test;
 
-use PHPUnit_Framework_Assert as Assert;
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\Assert;
+use PHPUnit\Framework\TestCase;
 use PUGX\Shortid\Factory;
 
 class FactoryTest extends TestCase
@@ -98,7 +98,8 @@ class FactoryTest extends TestCase
 
     public function testiCheckLength()
     {
-        $this->factory->checkLength(null, false);
+        $null = $this->factory->checkLength(null, false);
+        $this->assertNull($null);
     }
 
     /**

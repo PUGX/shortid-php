@@ -34,7 +34,7 @@ class Shortid
      * @param int    $length
      * @param string $alphabet
      *
-     * @return Shortid
+     * @return self
      */
     public static function generate(int $length = null, string $alphabet = null): Shortid
     {
