@@ -28,7 +28,7 @@ Advanced usage
 
 In the following example, you can see how to change the basic alphabet and default length.
 
-Default alphabet uses all letters (lowercase and uppcercase), all numbers, underscore, and hypen.
+Default alphabet uses all letters (lowercase and uppercase), all numbers, underscore, and hypen.
 
 ``` php
 use PUGX\Shortid\Factory;
