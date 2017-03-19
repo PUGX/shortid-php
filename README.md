@@ -37,8 +37,11 @@ use PUGX\Shortid\Shortid;
 require_once __DIR__.'/vendor/autoload.php';
 
 $factory = new Factory();
-$factory->setAlphabet('é123456789àbcdefghìjklmnòpqrstùvwxyzABCDEFGHIJKLMNOPQRSTUVWX.!@|');    // must be 64 characters long
-$factory->setLength(9);    // accepts values between 2 and 20
+// alphabet string must be 64 characters long
+$factory->setAlphabet('é123456789àbcdefghìjklmnòpqrstùvwxyzABCDEFGHIJKLMNOPQRSTUVWX.!@|');
+// length must be between 2 and 20 (default is 7)
+// of course, a lower length is increasing clashing probability
+$factory->setLength(9);
 Shortid::setFactory($factory);
 
 $id = Shortid::generate();
