@@ -31,12 +31,12 @@ class Shortid
     }
 
     /**
-     * @param int    $length
-     * @param string $alphabet
+     * @param int|null    $length
+     * @param string|null $alphabet
      *
      * @return self
      */
-    public static function generate(int $length = null, string $alphabet = null): Shortid
+    public static function generate(int $length = null, string $alphabet = null): self
     {
         if (!is_null($length)) {
             self::getFactory()->checkLength($length);

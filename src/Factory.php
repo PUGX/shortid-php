@@ -97,8 +97,8 @@ class Factory
     }
 
     /**
-     * @param string $length
-     * @param bool   $strict
+     * @param string|null $alphabet
+     * @param bool        $strict
      */
     public function checkAlphabet(string $alphabet = null, bool $strict = false)
     {
