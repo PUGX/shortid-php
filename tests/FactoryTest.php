@@ -13,7 +13,7 @@ class FactoryTest extends TestCase
      */
     private $factory;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->factory = new Factory();
     }
@@ -96,7 +96,7 @@ class FactoryTest extends TestCase
         $this->assertSame(5, $this->factory->getLength());
     }
 
-    public function testiCheckLength()
+    public function testCheckLength()
     {
         $null = $this->factory->checkLength(null, false);
         $this->assertNull($null);

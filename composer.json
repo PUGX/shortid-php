@@ -20,10 +20,11 @@
     },
     "require": {
         "php": ">=7.0",
+        "ext-mbstring": "*",
         "ircmaxell/random-lib": "^1.2"
     },
     "require-dev":{
-        "phpunit/phpunit": "^6.0"
+        "phpunit/phpunit": "^6.2"
     },
     "autoload": {
         "psr-4": { "PUGX\\Shortid\\": "src" }
