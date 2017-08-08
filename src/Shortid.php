@@ -17,7 +17,7 @@ class Shortid
     /**
      * @param string $id
      */
-    public function __construct(string $id = null)
+    public function __construct(string $id)
     {
         $this->id = $id;
     }
@@ -38,7 +38,7 @@ class Shortid
      */
     public static function generate(int $length = null, string $alphabet = null): self
     {
-        if (!is_null($length)) {
+        if (null === $length) {
             self::getFactory()->checkLength($length);
         }
         self::getFactory()->checkAlphabet($alphabet);
@@ -75,11 +75,11 @@ class Shortid
      */
     public static function isValid(string $value, int $length = null, string $alphabet = null): bool
     {
-        $length = is_null($length) ? self::getFactory()->getLength() : $length;
+        $length = $length ?? self::getFactory()->getLength();
         $alphabet = preg_quote($alphabet ?: self::getFactory()->getAlphabet(), '/');
         $matches = [];
         $ok = preg_match('/(['.$alphabet.']{'.$length.'})/', $value, $matches);
 
-        return $ok > 0 && strlen($matches[0]) == $length;
+        return $ok > 0 && strlen($matches[0]) === $length;
     }
 }

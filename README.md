@@ -59,6 +59,22 @@ $id5 = Shortid::generate(5);
 
 ```
 
+Pre-defined values
+==================
+
+If you need a deterministic string, instead of a random one, you can call directly the class constructor.
+This could be useful, for instance, when you need pre-defined data for testing purposes.
+
+``` php
+use PUGX\Shortid\Shortid;
+
+require_once __DIR__.'/vendor/autoload.php';
+
+$myFixedId = new Shortid('5h0r71d');
+$anotherFixedId = new Shortid('fooBarZ');
+
+```
+
 Doctrine
 ========
 
