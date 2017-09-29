@@ -49,6 +49,7 @@ class ShortidTest extends TestCase
     public function testIsNotValid()
     {
         $this->assertFalse(Shortid::isValid('/(;#!'));
+        $this->assertFalse(Shortid::isValid('harmful string stuff'));
     }
 
     public function testIsValidWithRegexChar()
