@@ -29,6 +29,9 @@
     "autoload": {
         "psr-4": { "PUGX\\Shortid\\": "src" }
     },
+    "autoload-dev": {
+        "psr-4": { "PUGX\\Shortid\\Test\\": "tests" }
+    },
     "extra": {
         "branch-alias": {
             "dev-master": "1.0-dev"
