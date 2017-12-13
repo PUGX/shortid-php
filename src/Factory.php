@@ -29,8 +29,8 @@ class Factory
      */
     public function generate(int $length = null, string $alphabet = null): Shortid
     {
-        $length = is_null($length) ? $this->length : $length;
-        $alphabet = is_null($alphabet) ? $this->alphabet : $alphabet;
+        $length = null === $length ? $this->length : $length;
+        $alphabet = null === $alphabet ? $this->alphabet : $alphabet;
         $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet);
 
         return new Shortid($id);
@@ -88,7 +88,7 @@ class Factory
      */
     public function checkLength(int $length = null, bool $strict = false)
     {
-        if (is_null($length) && !$strict) {
+        if (null === $length && !$strict) {
             return;
         }
         if ($length < 2 || $length > 20) {
@@ -102,7 +102,7 @@ class Factory
      */
     public function checkAlphabet(string $alphabet = null, bool $strict = false)
     {
-        if (is_null($alphabet) && !$strict) {
+        if (null === $alphabet && !$strict) {
             return;
         }
         $alphaLength = mb_strlen($alphabet, 'UTF-8');

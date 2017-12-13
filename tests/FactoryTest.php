@@ -65,10 +65,11 @@ class FactoryTest extends TestCase
      * @param string $alphabet
      *
      * @dataProvider wrongAlphabetsProvider
-     * @expectedException \InvalidArgumentException
      */
     public function testSetWrongAlphabet(string $alphabet)
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $this->factory->setAlphabet($alphabet);
     }
 
@@ -79,7 +80,7 @@ class FactoryTest extends TestCase
     {
         return [
             'test' => ['test'],
-            'rand' => [sha1(rand())],
+            'rand' => [sha1(random_int(0, getrandmax()))],
         ];
     }
 
@@ -102,19 +103,17 @@ class FactoryTest extends TestCase
         $this->assertNull($null);
     }
 
-    /**
-     * @expectedException \TypeError
-     */
     public function testSetWrongLengthType()
     {
+        $this->expectException(\TypeError::class);
+
         $this->factory->setLength('invalid');
     }
 
-    /**
-     * @expectedException \InvalidArgumentException
-     */
     public function testSetWrongLengthRange()
     {
+        $this->expectException(\InvalidArgumentException::class);
+
         $this->factory->setLength(0);
     }
 }
