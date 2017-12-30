@@ -16,14 +16,21 @@ class ShortidTest extends TestCase
     {
         $generated = Shortid::generate();
 
-        $this->assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generated->__toString());
+        $this->assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+    }
+
+    public function testGenerateWithReadable()
+    {
+        $generated = Shortid::generate(null, null, true);
+
+        $this->assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
     }
 
     public function testGenerateWithLength()
     {
         $generated = Shortid::generate(8);
 
-        $this->assertRegExp('/^[a-z0-9\_\-]{8,8}$/i', $generated->__toString());
+        $this->assertRegExp('/^[a-z0-9\_\-]{8}$/i', $generated->__toString());
     }
 
     public function testGetFactory()

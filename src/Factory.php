@@ -3,6 +3,7 @@
 namespace PUGX\Shortid;
 
 use RandomLib\Factory as RandomLibFactory;
+use RandomLib\Generator;
 
 class Factory
 {
@@ -21,58 +22,40 @@ class Factory
      */
     private static $factory;
 
-    /**
-     * @param int    $length
-     * @param string $alphabet
-     *
-     * @return Shortid
-     */
-    public function generate(int $length = null, string $alphabet = null): Shortid
+    public function generate(int $length = null, string $alphabet = null, bool $readable = false): Shortid
     {
         $length = null === $length ? $this->length : $length;
         $alphabet = null === $alphabet ? $this->alphabet : $alphabet;
+        if (null === $alphabet && $readable) {
+            $alphabet = Generator::EASY_TO_READ;
+        }
         $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet);
 
         return new Shortid($id);
     }
 
-    /**
-     * @param string $alphabet
-     */
     public function setAlphabet(string $alphabet)
     {
         $this->checkAlphabet($alphabet, true);
         $this->alphabet = $alphabet;
     }
 
-    /**
-     * @param int $length
-     */
     public function setLength(int $length)
     {
         $this->checkLength($length);
         $this->length = $length;
     }
 
-    /**
-     * @return string
-     */
     public function getAlphabet(): string
     {
         return $this->alphabet;
     }
 
-    /**
-     * @return int
-     */
     public function getLength(): int
     {
         return $this->length;
     }
 
-    /**
-     * @return RandomLibFactory
-     */
     public static function getFactory(): RandomLibFactory
     {
         if (null === self::$factory) {
@@ -82,10 +65,6 @@ class Factory
         return self::$factory;
     }
 
-    /**
-     * @param int  $length
-     * @param bool $strict
-     */
     public function checkLength(int $length = null, bool $strict = false)
     {
         if (null === $length && !$strict) {
@@ -96,10 +75,6 @@ class Factory
         }
     }
 
-    /**
-     * @param string|null $alphabet
-     * @param bool        $strict
-     */
     public function checkAlphabet(string $alphabet = null, bool $strict = false)
     {
         if (null === $alphabet && !$strict) {
