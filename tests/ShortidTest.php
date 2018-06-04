@@ -79,6 +79,6 @@ class ShortidTest extends TestCase
 	{
 		$generated = Shortid::generate();
 
-		$this->assertTrue((string) $generated === json_encode($generated));
+		$this->assertSame('"'.(string) $generated.'"', json_encode($generated));
 	}
 }
