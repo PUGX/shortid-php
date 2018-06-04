@@ -69,16 +69,16 @@ class ShortidTest extends TestCase
     }
 
     public function testJsonSerializable()
-	{
-		$generated = Shortid::generate();
+    {
+        $generated = Shortid::generate();
 
-		$this->assertInstanceOf('JsonSerializable', $generated);
-	}
+        $this->assertInstanceOf('JsonSerializable', $generated);
+    }
 
-	public function testJsonEncode()
-	{
-		$generated = Shortid::generate();
+    public function testJsonEncode()
+    {
+        $generated = Shortid::generate();
 
-		$this->assertSame('"'.$generated.'"', json_encode($generated));
-	}
+        $this->assertSame('"'.$generated.'"', json_encode($generated));
+    }
 }

@@ -58,8 +58,8 @@ class Shortid implements \JsonSerializable
         return $ok > 0 && strlen($matches[0]) === $length;
     }
 
-	public function jsonSerialize()
-	{
-		return $this->id;
-	}
+    public function jsonSerialize()
+    {
+        return $this->id;
+    }
 }
