@@ -2,7 +2,7 @@
 
 namespace PUGX\Shortid;
 
-class Shortid
+class Shortid implements \JsonSerializable
 {
     /**
      * @var string
@@ -56,5 +56,10 @@ class Shortid
         $ok = preg_match('/^(['.$alphabet.']{'.$length.'})$/', $value, $matches);
 
         return $ok > 0 && strlen($matches[0]) === $length;
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->id;
     }
 }

@@ -67,4 +67,18 @@ class ShortidTest extends TestCase
 
         $this->assertTrue(Shortid::isValid('slsh/]?'));
     }
+
+    public function testJsonSerializable()
+    {
+        $generated = Shortid::generate();
+
+        $this->assertInstanceOf('JsonSerializable', $generated);
+    }
+
+    public function testJsonEncode()
+    {
+        $generated = Shortid::generate();
+
+        $this->assertSame('"'.$generated.'"', json_encode($generated));
+    }
 }
