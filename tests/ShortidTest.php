@@ -84,7 +84,7 @@ class ShortidTest extends TestCase
 
     public function testSerialize()
     {
-        $shortid = Shortid::generate('shortid');
+        $shortid = new Shortid('shortid');
 
         $this->assertSame('shortid', $shortid->serialize());
     }
