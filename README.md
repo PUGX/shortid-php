@@ -104,3 +104,19 @@ Doctrine and Symfony
 
 If you want to use ShortId with Doctrine ORM and Symfony framework, take a look to
 [ShortId Doctrine type bundle](https://github.com/PUGX/shortid-doctrine-bundle).
+
+
+mbstring extension
+------------------
+
+This library uses [a polyfill](https://github.com/symfony/polyfill-mbstring), so it
+can used in environments where mbstring native extension is not available.
+
+If, instead, your environment is offering such extension, you can avoid installing
+polyfill by configuring [replace](https://getcomposer.org/doc/04-schema.md#replace)
+entry in your `composer.json`.
+
+
+
+
+
