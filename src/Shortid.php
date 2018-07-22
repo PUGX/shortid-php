@@ -43,7 +43,7 @@ class Shortid implements \JsonSerializable, \Serializable
         return self::$factory;
     }
 
-    public static function setFactory(Factory $factory = null)
+    public static function setFactory(Factory $factory = null): void
     {
         self::$factory = $factory;
     }
@@ -68,7 +68,7 @@ class Shortid implements \JsonSerializable, \Serializable
         return $this->id;
     }
 
-    public function unserialize($serialized)
+    public function unserialize($serialized): void
     {
         $this->id = $serialized;
     }

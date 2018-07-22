@@ -6,19 +6,19 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use PUGX\Shortid\Factory;
 
-class FactoryTest extends TestCase
+final class FactoryTest extends TestCase
 {
     /**
      * @var Factory
      */
     private $factory;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->factory = new Factory();
     }
 
-    public function testGenerate()
+    public function testGenerate(): void
     {
         $generated = $this->factory->generate();
 
@@ -52,7 +52,7 @@ class FactoryTest extends TestCase
      *
      * @dataProvider alphabetsProvider
      */
-    public function testSetAlphabet(string $alphabet)
+    public function testSetAlphabet(string $alphabet): void
     {
         $this->factory->setAlphabet($alphabet);
 
@@ -66,7 +66,7 @@ class FactoryTest extends TestCase
      *
      * @dataProvider wrongAlphabetsProvider
      */
-    public function testSetWrongAlphabet(string $alphabet)
+    public function testSetWrongAlphabet(string $alphabet): void
     {
         $this->expectException(\InvalidArgumentException::class);
 
@@ -84,33 +84,33 @@ class FactoryTest extends TestCase
         ];
     }
 
-    public function testGetFactory()
+    public function testGetFactory(): void
     {
         $factory = Factory::getFactory();
 
         $this->assertInstanceOf('RandomLib\Factory', $factory);
     }
 
-    public function testSetLength()
+    public function testSetLength(): void
     {
         $this->factory->setLength(5);
         $this->assertSame(5, $this->factory->getLength());
     }
 
-    public function testCheckLength()
+    public function testCheckLength(): void
     {
         $null = $this->factory->checkLength(null, false);
         $this->assertNull($null);
     }
 
-    public function testSetWrongLengthType()
+    public function testSetWrongLengthType(): void
     {
         $this->expectException(\TypeError::class);
 
         $this->factory->setLength('invalid');
     }
 
-    public function testSetWrongLengthRange()
+    public function testSetWrongLengthRange(): void
     {
         $this->expectException(\InvalidArgumentException::class);
 

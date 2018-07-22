@@ -10,7 +10,7 @@ return PhpCsFixer\Config::create()
     ->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
-        '@PHP70Migration:risky' => true,
+        '@PHP71Migration:risky' => true,
         '@PHPUnit60Migration:risky' => true,
         'array_syntax' => ['syntax' => 'short'],
         'ordered_imports' => true,

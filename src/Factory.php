@@ -34,13 +34,13 @@ class Factory
         return new Shortid($id);
     }
 
-    public function setAlphabet(string $alphabet)
+    public function setAlphabet(string $alphabet): void
     {
         $this->checkAlphabet($alphabet, true);
         $this->alphabet = $alphabet;
     }
 
-    public function setLength(int $length)
+    public function setLength(int $length): void
     {
         $this->checkLength($length);
         $this->length = $length;
@@ -65,7 +65,7 @@ class Factory
         return self::$factory;
     }
 
-    public function checkLength(int $length = null, bool $strict = false)
+    public function checkLength(int $length = null, bool $strict = false): void
     {
         if (null === $length && !$strict) {
             return;
@@ -75,7 +75,7 @@ class Factory
         }
     }
 
-    public function checkAlphabet(string $alphabet = null, bool $strict = false)
+    public function checkAlphabet(string $alphabet = null, bool $strict = false): void
     {
         if (null === $alphabet && !$strict) {
             return;

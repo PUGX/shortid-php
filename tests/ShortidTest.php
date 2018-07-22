@@ -5,42 +5,42 @@ namespace PUGX\Shortid\Test;
 use PHPUnit\Framework\TestCase;
 use PUGX\Shortid\Shortid;
 
-class ShortidTest extends TestCase
+final class ShortidTest extends TestCase
 {
-    protected function tearDown()
+    protected function tearDown(): void
     {
         Shortid::setFactory(null);
     }
 
-    public function testGenerate()
+    public function testGenerate(): void
     {
         $generated = Shortid::generate();
 
         $this->assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
     }
 
-    public function testGenerateWithReadable()
+    public function testGenerateWithReadable(): void
     {
         $generated = Shortid::generate(null, null, true);
 
         $this->assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
     }
 
-    public function testGenerateWithLength()
+    public function testGenerateWithLength(): void
     {
         $generated = Shortid::generate(8);
 
         $this->assertRegExp('/^[a-z0-9\_\-]{8}$/i', $generated->__toString());
     }
 
-    public function testGetFactory()
+    public function testGetFactory(): void
     {
         $factory = Shortid::getFactory();
 
         $this->assertInstanceOf('PUGX\Shortid\Factory', $factory);
     }
 
-    public function testSetFactory()
+    public function testSetFactory(): void
     {
         $factoryMock = $this->getMockBuilder('PUGX\Shortid\Factory')->getMock();
         Shortid::setFactory($factoryMock);
@@ -48,18 +48,18 @@ class ShortidTest extends TestCase
         $this->assertSame($factoryMock, Shortid::getFactory());
     }
 
-    public function testIsValid()
+    public function testIsValid(): void
     {
         $this->assertTrue(Shortid::isValid('shortid'));
     }
 
-    public function testIsNotValid()
+    public function testIsNotValid(): void
     {
         $this->assertFalse(Shortid::isValid('/(;#!'));
         $this->assertFalse(Shortid::isValid('harmful string stuff'));
     }
 
-    public function testIsValidWithRegexChar()
+    public function testIsValidWithRegexChar(): void
     {
         $factory = Shortid::getFactory();
         $factory->setAlphabet('hìjklmnòpqrstùvwxyzABCDEFGHIJKLMNOPQRSTUVWX.\+*?[^]$(){}=!<>|:-/');
@@ -68,28 +68,28 @@ class ShortidTest extends TestCase
         $this->assertTrue(Shortid::isValid('slsh/]?'));
     }
 
-    public function testJsonSerializable()
+    public function testJsonSerializable(): void
     {
         $generated = Shortid::generate();
 
         $this->assertInstanceOf('JsonSerializable', $generated);
     }
 
-    public function testJsonEncode()
+    public function testJsonEncode(): void
     {
         $generated = Shortid::generate();
 
         $this->assertSame('"'.$generated.'"', json_encode($generated));
     }
 
-    public function testSerialize()
+    public function testSerialize(): void
     {
         $shortid = new Shortid('shortid');
 
         $this->assertSame('shortid', $shortid->serialize());
     }
 
-    public function testUnserialize()
+    public function testUnserialize(): void
     {
         $shortid = Shortid::generate();
         $shortid->unserialize('shortid');
