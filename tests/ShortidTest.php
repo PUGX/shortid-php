@@ -79,7 +79,7 @@ final class ShortidTest extends TestCase
     {
         $generated = Shortid::generate();
 
-        $this->assertSame('"'.$generated.'"', json_encode($generated));
+        $this->assertSame('"'.$generated.'"', \json_encode($generated));
     }
 
     public function testSerialize(): void

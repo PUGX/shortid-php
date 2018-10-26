@@ -51,9 +51,9 @@ class Shortid implements \JsonSerializable, \Serializable
     public static function isValid(string $value, int $length = null, string $alphabet = null): bool
     {
         $length = $length ?? self::getFactory()->getLength();
-        $alphabet = preg_quote($alphabet ?: self::getFactory()->getAlphabet(), '/');
+        $alphabet = \preg_quote($alphabet ?: self::getFactory()->getAlphabet(), '/');
         $matches = [];
-        $ok = preg_match('/^(['.$alphabet.']{'.$length.'})$/', $value, $matches);
+        $ok = \preg_match('/^(['.$alphabet.']{'.$length.'})$/', $value, $matches);
 
         return $ok > 0 && \strlen($matches[0]) === $length;
     }

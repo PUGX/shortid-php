@@ -34,14 +34,14 @@ final class FactoryTest extends TestCase
         $chars = [];
 
         for ($i = 1; $i <= 65533; ++$i) {
-            $chars[] = mb_convert_encoding("&#$i;", 'UTF-8', 'HTML-ENTITIES');
+            $chars[] = \mb_convert_encoding("&#$i;", 'UTF-8', 'HTML-ENTITIES');
         }
-        $chars = preg_replace('/[^\p{Ll}]/u', '', $chars);
-        $chars = array_filter(array_map('trim', $chars));
+        $chars = \preg_replace('/[^\p{Ll}]/u', '', $chars);
+        $chars = \array_filter(\array_map('trim', $chars));
 
         for ($i = 0; $i < 100; ++$i) {
-            shuffle($chars);
-            $alphabets[] = [implode(null, array_slice($chars, 0, 64))];
+            \shuffle($chars);
+            $alphabets[] = [\implode(null, \array_slice($chars, 0, 64))];
         }
 
         return $alphabets;
@@ -80,7 +80,7 @@ final class FactoryTest extends TestCase
     {
         return [
             'test' => ['test'],
-            'rand' => [sha1(random_int(0, getrandmax()))],
+            'rand' => [\sha1(\random_int(0, \getrandmax()))],
         ];
     }
 

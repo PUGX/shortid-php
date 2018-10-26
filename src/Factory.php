@@ -80,9 +80,9 @@ class Factory
         if (null === $alphabet && !$strict) {
             return;
         }
-        $alphaLength = mb_strlen($alphabet, 'UTF-8');
+        $alphaLength = \mb_strlen($alphabet, 'UTF-8');
         if (64 !== $alphaLength) {
-            throw new \InvalidArgumentException(sprintf('Invalid alphabet: %s (length: %u)', $alphabet, $alphaLength));
+            throw new \InvalidArgumentException(\sprintf('Invalid alphabet: %s (length: %u)', $alphabet, $alphaLength));
         }
     }
 }
