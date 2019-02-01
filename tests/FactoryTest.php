@@ -28,7 +28,7 @@ final class FactoryTest extends TestCase
     /**
      * @return array[]
      */
-    public function alphabetsProvider()
+    public function alphabetsProvider(): array
     {
         $alphabets = [];
         $chars = [];
