@@ -5,7 +5,7 @@ namespace PUGX\Shortid;
 use RandomLib\Factory as RandomLibFactory;
 use RandomLib\Generator;
 
-class Factory
+final class Factory
 {
     /**
      * @var int

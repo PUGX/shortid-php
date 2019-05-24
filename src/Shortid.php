@@ -2,7 +2,7 @@
 
 namespace PUGX\Shortid;
 
-class Shortid implements \JsonSerializable, \Serializable
+final class Shortid implements \JsonSerializable, \Serializable
 {
     /**
      * @var string
