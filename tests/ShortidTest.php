@@ -3,6 +3,7 @@
 namespace PUGX\Shortid\Test;
 
 use PHPUnit\Framework\TestCase;
+use PUGX\Shortid\Factory;
 use PUGX\Shortid\Shortid;
 
 final class ShortidTest extends TestCase
@@ -37,12 +38,13 @@ final class ShortidTest extends TestCase
     {
         $factory = Shortid::getFactory();
 
-        $this->assertInstanceOf('PUGX\Shortid\Factory', $factory);
+        $this->assertInstanceOf(Factory::class, $factory);
     }
 
     public function testSetFactory(): void
     {
-        $factoryMock = $this->getMockBuilder('PUGX\Shortid\Factory')->getMock();
+        /** @var Factory $factoryMock */
+        $factoryMock = $this->createMock(Factory::class);
         Shortid::setFactory($factoryMock);
 
         $this->assertSame($factoryMock, Shortid::getFactory());

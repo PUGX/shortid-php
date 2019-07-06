@@ -10,7 +10,7 @@ final class Shortid implements \JsonSerializable, \Serializable
     private $id;
 
     /**
-     * @var Factory
+     * @var Factory|null
      */
     private static $factory;
 

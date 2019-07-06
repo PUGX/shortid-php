@@ -22,13 +22,13 @@ final class Factory
      */
     private static $factory;
 
-    public function generate(int $length = null, string $alphabet = null, bool $readable = false): Shortid
+    public function generate(int $length = null, ?string $alphabet = null, bool $readable = false): Shortid
     {
         $length = null === $length ? $this->length : $length;
-        $alphabet = null === $alphabet ? $this->alphabet : $alphabet;
         if (null === $alphabet && $readable) {
             $alphabet = Generator::EASY_TO_READ;
         }
+        $alphabet = null === $alphabet ? $this->alphabet : $alphabet;
         $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet);
 
         return new Shortid($id);
@@ -75,12 +75,12 @@ final class Factory
         }
     }
 
-    public function checkAlphabet(string $alphabet = null, bool $strict = false): void
+    public function checkAlphabet(?string $alphabet = null, bool $strict = false): void
     {
         if (null === $alphabet && !$strict) {
             return;
         }
-        $alphaLength = \mb_strlen($alphabet, 'UTF-8');
+        $alphaLength = null === $alphabet ? 0 : \mb_strlen($alphabet, 'UTF-8');
         if (64 !== $alphaLength) {
             throw new \InvalidArgumentException(\sprintf('Invalid alphabet: %s (length: %u)', $alphabet, $alphaLength));
         }

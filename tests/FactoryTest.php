@@ -41,7 +41,7 @@ final class FactoryTest extends TestCase
 
         for ($i = 0; $i < 100; ++$i) {
             \shuffle($chars);
-            $alphabets[] = [\implode(null, \array_slice($chars, 0, 64))];
+            $alphabets[] = [\implode('', \array_slice($chars, 0, 64))];
         }
 
         return $alphabets;
@@ -80,7 +80,7 @@ final class FactoryTest extends TestCase
     {
         return [
             'test' => ['test'],
-            'rand' => [\sha1(\random_int(0, \getrandmax()))],
+            'rand' => [\sha1((string) \random_int(0, \getrandmax()))],
         ];
     }
 
