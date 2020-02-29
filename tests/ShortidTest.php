@@ -2,6 +2,7 @@
 
 namespace PUGX\Shortid\Test;
 
+use JsonSerializable;
 use PHPUnit\Framework\TestCase;
 use PUGX\Shortid\Factory;
 use PUGX\Shortid\Shortid;
@@ -74,7 +75,7 @@ final class ShortidTest extends TestCase
     {
         $generated = Shortid::generate();
 
-        $this->assertInstanceOf('JsonSerializable', $generated);
+        $this->assertInstanceOf(JsonSerializable::class, $generated);
     }
 
     public function testJsonEncode(): void
