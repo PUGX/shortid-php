@@ -2,9 +2,9 @@
 
 namespace PUGX\Shortid\Test;
 
-use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use PUGX\Shortid\Factory;
+use RandomLib\Factory as RandomLibFactory;
 
 final class FactoryTest extends TestCase
 {
@@ -48,22 +48,18 @@ final class FactoryTest extends TestCase
     }
 
     /**
-     * @param string $alphabet
-     *
      * @dataProvider alphabetsProvider
      */
     public function testSetAlphabet(string $alphabet): void
     {
         $this->factory->setAlphabet($alphabet);
 
-        $newAlphabet = Assert::readAttribute($this->factory, 'alphabet');
+        $newAlphabet = $this->factory->getAlphabet();
 
         $this->assertSame($alphabet, $newAlphabet);
     }
 
     /**
-     * @param string $alphabet
-     *
      * @dataProvider wrongAlphabetsProvider
      */
     public function testSetWrongAlphabet(string $alphabet): void
@@ -88,7 +84,7 @@ final class FactoryTest extends TestCase
     {
         $factory = Factory::getFactory();
 
-        $this->assertInstanceOf('RandomLib\Factory', $factory);
+        $this->assertInstanceOf(RandomLibFactory::class, $factory);
     }
 
     public function testSetLength(): void
