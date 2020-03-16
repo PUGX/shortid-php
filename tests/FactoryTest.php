@@ -36,6 +36,7 @@ final class FactoryTest extends TestCase
         for ($i = 1; $i <= 65533; ++$i) {
             $chars[] = \mb_convert_encoding("&#$i;", 'UTF-8', 'HTML-ENTITIES');
         }
+        /** @var array<string> $chars */
         $chars = \preg_replace('/[^\p{Ll}]/u', '', $chars);
         $chars = \array_filter(\array_map('trim', $chars));
 
