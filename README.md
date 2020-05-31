@@ -6,13 +6,14 @@ ShortId
 [![Code Climate](https://codeclimate.com/github/PUGX/shortid-php/badges/gpa.svg)](https://codeclimate.com/github/PUGX/shortid-php)
 [![Test Coverage](https://codeclimate.com/github/PUGX/shortid-php/badges/coverage.svg)](https://codeclimate.com/github/PUGX/shortid-php/coverage)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/058a0905-b889-49a4-9752-766787fcaeae/mini.png)](https://insight.sensiolabs.com/projects/058a0905-b889-49a4-9752-766787fcaeae)
+[![License](https://poser.pugx.org/pugx/shortid-php/license.svg)](https://packagist.org/packages/pugx/shortid-php)
 
 This library is an implementation of [ShortId](https://github.com/dylang/shortid) for PHP.
 
 Basic usage
 -----------
 
-Just call ``PUGX\Shortid\Shortid::generate()`` to get a random string with default length 7, like "MfiYIvI".
+Just call `PUGX\Shortid\Shortid::generate()` to get a random string with default length 7, like "MfiYIvI".
 
 ``` php
 use PUGX\Shortid\Shortid;
@@ -115,8 +116,4 @@ can used in environments where mbstring native extension is not available.
 If, instead, your environment is offering such extension, you can avoid installing
 polyfill by configuring [replace](https://getcomposer.org/doc/04-schema.md#replace)
 entry in your `composer.json`.
-
-
-
-
 
