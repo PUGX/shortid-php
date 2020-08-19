@@ -11,11 +11,14 @@ php:
     - nightly
 
 matrix:
-    allow_failures:
+    include:
+        - php: 7.1
+          env: COMPOSER_FLAGS="--prefer-lowest"
         - php: nightly
+          env: COMPOSER_FLAGS="--ignore-platform-reqs"
 
 before_script:
-    - composer install
+    - composer install $COMPOSER_FLAGS --no-interaction
     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
     - ./cc-test-reporter before-build

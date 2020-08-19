@@ -20,13 +20,13 @@
         }
     ],
     "require": {
-        "php": "^7.1",
+        "php": "^7.1 || ^8.0",
         "paragonie/random-lib": "^2.0",
         "symfony/polyfill-mbstring": "^1.11"
     },
     "require-dev": {
         "dg/bypass-finals": "^1.1",
-        "phpunit/phpunit": "^7.5 || ^8.5 || ^9.0"
+        "phpunit/phpunit": "^7.5 || ^8.5 || ^9.3"
     },
     "config": {
         "bin-dir": "bin"
