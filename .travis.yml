@@ -3,19 +3,19 @@ language: php
 env:
     global:
         - CC_TEST_REPORTER_ID=dee9b4d616e4b99d166eec47ada9e8a6cd1bbbd74c5b4604a6912b6f8ec004ec
-php:
-    - 7.1
-    - 7.2
-    - 7.3
-    - 7.4
-    - nightly
 
-matrix:
-    allow_failures:
+jobs:
+    include:
+        - php: 7.1
+          env: COMPOSER_FLAGS="--prefer-lowest"
+        - php: 7.2
+        - php: 7.3
+        - php: 7.4
         - php: nightly
+          env: COMPOSER_FLAGS="--ignore-platform-reqs"
 
 before_script:
-    - composer install
+    - composer update $COMPOSER_FLAGS --no-interaction
     - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
     - chmod +x ./cc-test-reporter
     - ./cc-test-reporter before-build
