@@ -17,14 +17,17 @@ final class Factory
      */
     private $alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
 
+    private $readable = false;
+
     /**
      * @var RandomLibFactory
      */
     private static $factory;
 
-    public function generate(int $length = null, ?string $alphabet = null, bool $readable = false): Shortid
+    public function generate(int $length = null, string $alphabet = null, bool $readable = null): Shortid
     {
         $length = null === $length ? $this->length : $length;
+        $readable = null === $readable ? $this->readable : $readable;
         if (null === $alphabet && $readable) {
             $alphabet = Generator::EASY_TO_READ;
         }
@@ -84,5 +87,10 @@ final class Factory
         if (64 !== $alphaLength) {
             throw new \InvalidArgumentException(\sprintf('Invalid alphabet: %s (length: %u)', $alphabet, $alphaLength));
         }
+    }
+
+    public function setReadable(bool $readable): void
+    {
+        $this->readable = $readable;
     }
 }
