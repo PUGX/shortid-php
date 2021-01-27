@@ -17,6 +17,9 @@ final class Factory
      */
     private $alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
 
+    /**
+     * @var bool
+     */
     private $readable = false;
 
     /**

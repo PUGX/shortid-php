@@ -1,0 +1,12 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Result of method PUGX\\\\Shortid\\\\Factory\\:\\:checkLength\\(\\) \\(void\\) is used\\.$#"
+			count: 1
+			path: tests/FactoryTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$length of method PUGX\\\\Shortid\\\\Factory\\:\\:setLength\\(\\) expects int, string given\\.$#"
+			count: 1
+			path: tests/FactoryTest.php
+
