@@ -5,6 +5,7 @@ ShortId
 ![Build Status](https://github.com/PUGX/shortid-php/workflows/build/badge.svg)
 [![Code Climate](https://codeclimate.com/github/PUGX/shortid-php/badges/gpa.svg)](https://codeclimate.com/github/PUGX/shortid-php)
 [![Test Coverage](https://codeclimate.com/github/PUGX/shortid-php/badges/coverage.svg)](https://codeclimate.com/github/PUGX/shortid-php/coverage)
+[![codecov](https://codecov.io/gh/PUGX/shortid-php/branch/master/graph/badge.svg?token=3sX6ShXgZp)](https://codecov.io/gh/PUGX/shortid-php)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/058a0905-b889-49a4-9752-766787fcaeae/mini.png)](https://insight.sensiolabs.com/projects/058a0905-b889-49a4-9752-766787fcaeae)
 [![License](https://poser.pugx.org/pugx/shortid-php/license.svg)](https://packagist.org/packages/pugx/shortid-php)
 
