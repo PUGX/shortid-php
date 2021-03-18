@@ -68,4 +68,7 @@ jobs:
               with:
                   codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
                   command: after-build --coverage-input-type clover
+            - uses: codecov/codecov-action@v1
+              with:
+                  files: ./clover.xml
 
