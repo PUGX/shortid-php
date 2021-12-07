@@ -58,10 +58,7 @@ final class Shortid implements \JsonSerializable, \Serializable
         return $ok > 0 && \strlen($matches[0]) === $length;
     }
 
-    /**
-     * @return string
-     */
-    public function jsonSerialize()
+    public function jsonSerialize(): string
     {
         return $this->id;
     }
@@ -77,5 +74,15 @@ final class Shortid implements \JsonSerializable, \Serializable
     public function unserialize($serialized): void
     {
         $this->id = $serialized;
+    }
+
+    public function __serialize(): array
+    {
+        return ['id' => $this->id];
+    }
+
+    public function __unserialize(array $serialized): void
+    {
+        $this->id = $serialized['id'];
     }
 }
