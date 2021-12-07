@@ -98,4 +98,19 @@ final class ShortidTest extends TestCase
 
         $this->assertSame('shortid', (string) $shortid);
     }
+
+    public function testMagicSerialize(): void
+    {
+        $shortid = new Shortid('shortid');
+
+        $this->assertSame(['id' => 'shortid'], $shortid->__serialize());
+    }
+
+    public function testMagicUnserialize(): void
+    {
+        $shortid = Shortid::generate();
+        $shortid->__unserialize(['id' => 'shortid']);
+
+        $this->assertSame('shortid', (string) $shortid);
+    }
 }
