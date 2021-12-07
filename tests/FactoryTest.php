@@ -26,7 +26,7 @@ final class FactoryTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return string[][]
      */
     public function alphabetsProvider(): array
     {
@@ -71,7 +71,7 @@ final class FactoryTest extends TestCase
     }
 
     /**
-     * @return array[]
+     * @return array{test: array{'test'}, rand: array{string}}
      */
     public function wrongAlphabetsProvider(): array
     {

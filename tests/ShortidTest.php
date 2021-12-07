@@ -44,11 +44,10 @@ final class ShortidTest extends TestCase
 
     public function testSetFactory(): void
     {
-        /** @var Factory $factoryMock */
-        $factoryMock = $this->createMock(Factory::class);
-        Shortid::setFactory($factoryMock);
+        $factory = new Factory();
+        Shortid::setFactory($factory);
 
-        $this->assertSame($factoryMock, Shortid::getFactory());
+        $this->assertSame($factory, Shortid::getFactory());
     }
 
     public function testIsValid(): void
