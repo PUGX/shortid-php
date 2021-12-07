@@ -65,6 +65,7 @@ jobs:
             - run: bin/phpunit --coverage-clover=clover.xml
             - name: Code Climate Test Reporter
               uses: aktions/codeclimate-test-reporter@v1
+              if: ${{ github.event_name != 'pull_request' }}
               with:
                   codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
                   command: after-build --coverage-input-type clover
