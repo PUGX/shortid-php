@@ -76,11 +76,17 @@ final class Shortid implements \JsonSerializable, \Serializable
         $this->id = $serialized;
     }
 
+    /**
+     * @return array{id: string}
+     */
     public function __serialize(): array
     {
         return ['id' => $this->id];
     }
 
+    /**
+     * @param array{id: string} $serialized
+     */
     public function __unserialize(array $serialized): void
     {
         $this->id = $serialized['id'];
