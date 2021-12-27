@@ -30,13 +30,6 @@ jobs:
         strategy:
             max-parallel: 1
             matrix:
-                php:
-                    - '7.1'
-                    - '7.2'
-                    - '7.3'
-                    - '7.4'
-                    - '8.0'
-                    - '8.1'
                 include:
                     - description: 'lowest'
                       php: '7.1'
@@ -68,7 +61,7 @@ jobs:
             - run: bin/phpunit --coverage-clover=clover.xml
             - name: Code Climate Test Reporter
               uses: aktions/codeclimate-test-reporter@v1
-              if: ${{ github.event_name != 'pull_request' }}
+              if: ${{ matrix.php == '8.1' }}
               with:
                   codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
                   command: after-build --coverage-input-type clover
