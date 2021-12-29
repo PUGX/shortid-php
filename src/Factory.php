@@ -27,17 +27,21 @@ final class Factory
      */
     private static $factory;
 
+    /**
+     * @throws InvalidShortidException
+     */
     public function generate(int $length = null, string $alphabet = null, bool $readable = null): Shortid
     {
-        $length = null === $length ? $this->length : $length;
-        $readable = null === $readable ? $this->readable : $readable;
+        $length = $length ?? $this->length;
+        $readable = $readable ?? $this->readable;
         if (null === $alphabet && $readable) {
-            $alphabet = Generator::EASY_TO_READ;
+            $alphabet = \str_replace(\str_split(Generator::AMBIGUOUS_CHARS), '', $this->alphabet);
+            $alphabet .= \str_repeat('_', \strlen(Generator::AMBIGUOUS_CHARS) / 2);
+            $alphabet .= \str_repeat('-', \strlen(Generator::AMBIGUOUS_CHARS) / 2);
         }
-        $alphabet = null === $alphabet ? $this->alphabet : $alphabet;
-        $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet);
+        $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet ?? $this->alphabet);
 
-        return new Shortid($id);
+        return new Shortid($id, $length, $alphabet);
     }
 
     public function setAlphabet(string $alphabet): void
