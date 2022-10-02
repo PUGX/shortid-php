@@ -22,7 +22,7 @@ final class FactoryTest extends TestCase
     {
         $generated = $this->factory->generate();
 
-        $this->assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generated->__toString());
+        self::assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generated->__toString());
     }
 
     /**
@@ -57,7 +57,7 @@ final class FactoryTest extends TestCase
 
         $newAlphabet = $this->factory->getAlphabet();
 
-        $this->assertSame($alphabet, $newAlphabet);
+        self::assertSame($alphabet, $newAlphabet);
     }
 
     /**
@@ -77,7 +77,7 @@ final class FactoryTest extends TestCase
     {
         return [
             'test' => ['test'],
-            'rand' => [\sha1((string) \random_int(0, \getrandmax()))],
+            'rand' => [\sha1((string) \random_int(0, \mt_getrandmax()))],
         ];
     }
 
@@ -85,19 +85,19 @@ final class FactoryTest extends TestCase
     {
         $factory = Factory::getFactory();
 
-        $this->assertInstanceOf(RandomLibFactory::class, $factory);
+        self::assertInstanceOf(RandomLibFactory::class, $factory);
     }
 
     public function testSetLength(): void
     {
         $this->factory->setLength(5);
-        $this->assertSame(5, $this->factory->getLength());
+        self::assertSame(5, $this->factory->getLength());
     }
 
     public function testCheckLength(): void
     {
         $null = $this->factory->checkLength(null, false);
-        $this->assertNull($null);
+        self::assertNull($null);
     }
 
     public function testSetWrongLengthType(): void

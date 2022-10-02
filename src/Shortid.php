@@ -14,8 +14,15 @@ final class Shortid implements \JsonSerializable, \Serializable
      */
     private static $factory;
 
-    public function __construct(string $id)
+    /**
+     * @throws InvalidShortidException
+     */
+    public function __construct(string $id, int $length = null, string $alphabet = null)
     {
+        if (!self::isValid($id, $length, $alphabet)) {
+            throw new InvalidShortidException(\sprintf('Invalid shortid %s (length %d alphabet %s', $id, $length, $alphabet));
+        }
+
         $this->id = $id;
     }
 
@@ -24,6 +31,9 @@ final class Shortid implements \JsonSerializable, \Serializable
         return $this->id;
     }
 
+    /**
+     * @throws InvalidShortidException
+     */
     public static function generate(int $length = null, string $alphabet = null, bool $readable = false): self
     {
         if (null === $length) {
