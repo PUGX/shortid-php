@@ -2,6 +2,7 @@
 
 namespace PUGX\Shortid;
 
+use Random\Randomizer;
 use RandomLib\Factory as RandomLibFactory;
 use RandomLib\Generator;
 
@@ -39,7 +40,11 @@ final class Factory
             $alphabet .= \str_repeat('_', \strlen(Generator::AMBIGUOUS_CHARS) / 2);
             $alphabet .= \str_repeat('-', \strlen(Generator::AMBIGUOUS_CHARS) / 2);
         }
-        $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet ?? $this->alphabet);
+        if (\PHP_VERSION_ID >= 80300) {
+            $id = (new Randomizer())->getBytesFromString($alphabet ?? $this->alphabet, $length);
+        } else {
+            $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet ?? $this->alphabet);
+        }
 
         return new Shortid($id, $length, $alphabet);
     }

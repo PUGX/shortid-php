@@ -2,7 +2,6 @@
 
 namespace PUGX\Shortid\Test;
 
-use JsonSerializable;
 use PHPUnit\Framework\TestCase;
 use PUGX\Shortid\Factory;
 use PUGX\Shortid\InvalidShortidException;
@@ -19,21 +18,33 @@ final class ShortidTest extends TestCase
     {
         $generated = Shortid::generate();
 
-        self::assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+        if (\method_exists($this, 'assertMatchesRegularExpression')) {
+            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+        } else {
+            self::assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+        }
     }
 
     public function testGenerateWithReadable(): void
     {
         $generated = Shortid::generate(null, null, true);
 
-        self::assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+        if (\method_exists($this, 'assertMatchesRegularExpression')) {
+            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+        } else {
+            self::assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+        }
     }
 
     public function testGenerateWithLength(): void
     {
         $generated = Shortid::generate(8);
 
-        self::assertRegExp('/^[a-z0-9\_\-]{8}$/i', $generated->__toString());
+        if (\method_exists($this, 'assertMatchesRegularExpression')) {
+            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{8}$/i', $generated->__toString());
+        } else {
+            self::assertRegExp('/^[a-z0-9\_\-]{8}$/i', $generated->__toString());
+        }
     }
 
     public function testGetFactory(): void
@@ -75,7 +86,7 @@ final class ShortidTest extends TestCase
     {
         $generated = Shortid::generate();
 
-        self::assertInstanceOf(JsonSerializable::class, $generated);
+        self::assertInstanceOf(\JsonSerializable::class, $generated);
     }
 
     public function testJsonEncode(): void

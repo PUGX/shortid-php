@@ -1,5 +1,4 @@
-ShortId
-=======
+# ShortId
 
 [![Total Downloads](https://poser.pugx.org/pugx/shortid-php/downloads.png)](https://packagist.org/packages/pugx/shortid-php)
 ![Build Status](https://github.com/PUGX/shortid-php/workflows/build/badge.svg)
@@ -9,10 +8,22 @@ ShortId
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/058a0905-b889-49a4-9752-766787fcaeae/mini.png)](https://insight.sensiolabs.com/projects/058a0905-b889-49a4-9752-766787fcaeae)
 [![License](https://poser.pugx.org/pugx/shortid-php/license.svg)](https://packagist.org/packages/pugx/shortid-php)
 
-This library is an implementation of [ShortId](https://github.com/dylang/shortid) for PHP.
+This library is an implementation of [ShortId][1] for PHP.
 
-Basic usage
------------
+## Installation
+
+Install the library via Composer:
+
+```bash
+composer require pugx/shortid-php
+```
+
+## Usage
+
+ShortId is a PHP library that generates short, unique, and random strings. It's useful in scenarios
+where you need concise identifiers, such as URL shortening or generating unique keys.
+
+## Basic usage
 
 Just call `PUGX\Shortid\Shortid::generate()` to get a random string with default length 7, like "MfiYIvI".
 
@@ -25,10 +36,9 @@ $id = Shortid::generate();
 
 ```
 
-Advanced usage
---------------
+## Advanced usage
 
-In the following example, you can see how to change the basic alphabet and default length.
+For more control, you can customize the alphabet and length using the Factory class.
 
 Default alphabet uses all letters (lowercase and uppercase), all numbers, underscore, and hypen.
 
@@ -61,12 +71,11 @@ $id5 = Shortid::generate(5);
 
 ```
 
-More readable strings
----------------------
+## More readable strings
 
 Sometimes, you want to avoid some ambiguous characters, like `B`/`8` or `I`/`l` (uppercase/lowercase).
-In this case, you can pass a third parameter `true` to `generate` method. Notice that in this case the alphabet will
-be ignored, so it makes sense to pass a null one.
+In this case, you can pass a third parameter `true` to `generate` method. Notice that in this case the alphabet
+will be ignored, so it makes sense to pass a null one.
 
 Example:
 
@@ -78,8 +87,7 @@ require_once __DIR__.'/vendor/autoload.php';
 $id = Shortid::generate(7, null, true);
 ``` 
 
-Pre-defined values
-------------------
+## Pre-defined values
 
 If you need a deterministic string, instead of a random one, you can call directly the class constructor.
 This could be useful, for instance, when you need pre-defined data for testing purposes.
@@ -94,27 +102,37 @@ $anotherFixedId = new Shortid('fooBarZ');
 
 ```
 
-Doctrine
---------
+## Doctrine
 
-If you want to use ShortId with Doctrine ORM, take a look to
-[ShortId Doctrine type](https://github.com/PUGX/shortid-doctrine).
+If you want to use ShortId with Doctrine ORM, take a look to [ShortId Doctrine type][2].
 
 
-Doctrine and Symfony
---------------------
+## Doctrine and Symfony
 
 If you want to use ShortId with Doctrine ORM and Symfony framework, take a look to
-[ShortId Doctrine type bundle](https://github.com/PUGX/shortid-doctrine-bundle).
+[ShortId Doctrine type bundle][3].
 
 
-mbstring extension
-------------------
+## Dependencies replacement
 
-This library uses [a polyfill](https://github.com/symfony/polyfill-mbstring), so it
-can used in environments where mbstring native extension is not available.
+This library uses [a polyfill][4], so it can be used in environments where the mbstring
+native extension is not available.
 
-If, instead, your environment is offering such extension, you can avoid installing
-polyfill by configuring [replace](https://getcomposer.org/doc/04-schema.md#replace)
-entry in your `composer.json`.
+If, instead, your environment is offering that extension, you can avoid installing
+that polyfill by configuring a [replace][5] entry in your `composer.json`.
 
+The same applies to the [randomLib][6] library: if you are using PHP 8.3 or higher, 
+you can replace it, since this library uses the native `Random` class instead.
+
+## Contributing
+
+Contributions are welcome. Feel free to open a Pull Request or file an issue here on GitHub!
+Please read the [contributing guidelines][7] first.
+
+[1]: https://github.com/dylang/shortid
+[2]: https://github.com/PUGX/shortid-doctrine
+[3]: https://github.com/PUGX/shortid-doctrine-bundle
+[4]: https://github.com/symfony/polyfill-mbstring
+[5]: https://getcomposer.org/doc/04-schema.md#replace
+[6]: https://packagist.org/packages/paragonie/random-lib
+[7]: CONTRIBUTING.md

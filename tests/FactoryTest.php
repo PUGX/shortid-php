@@ -22,7 +22,11 @@ final class FactoryTest extends TestCase
     {
         $generated = $this->factory->generate();
 
-        self::assertRegExp('/^[a-z0-9\_\-]{7,7}$/i', $generated->__toString());
+        if (\method_exists($this, 'assertMatchesRegularExpression')) {
+            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+        } else {
+            self::assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+        }
     }
 
     /**
