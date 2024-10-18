@@ -6,11 +6,11 @@ on:
 
 jobs:
     phpstan:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         name: PHPStan
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: PHPStan
               uses: docker://oskarstark/phpstan-ga
               env:
@@ -18,30 +18,22 @@ jobs:
               with:
                   args: analyse
     cs-fixer:
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         name: PHP-CS-Fixer
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: Fix CS
               uses: docker://oskarstark/php-cs-fixer-ga
     tests:
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-24.04
         strategy:
             max-parallel: 1
             matrix:
                 include:
                     - description: 'lowest'
-                      php: '7.1'
+                      php: '8.1'
                       composer_option: '--prefer-lowest'
-                    - description: '7.2'
-                      php: '7.2'
-                    - description: '7.3'
-                      php: '7.3'
-                    - description: '7.4'
-                      php: '7.4'
-                    - description: '8.0'
-                      php: '8.0'
                     - description: '8.1'
                       php: '8.1'
                     - description: '8.2'
@@ -51,10 +43,10 @@ jobs:
         name: PHP ${{ matrix.php }} tests
         steps:
             - name: Checkout
-              uses: actions/checkout@v3
+              uses: actions/checkout@v4
             - name: Cache
-              uses: actions/cache@v3
-              with: 
+              uses: actions/cache@v4
+              with:
                   path: ~/.composer/cache/files
                   key: ${{ matrix.php }}-${{ matrix.composer_option }} 
             - name: Setup PHP

@@ -21,7 +21,7 @@ final class ShortidTest extends TestCase
         if (\method_exists($this, 'assertMatchesRegularExpression')) {
             self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
         } else {
-            self::assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
         }
     }
 
@@ -32,7 +32,7 @@ final class ShortidTest extends TestCase
         if (\method_exists($this, 'assertMatchesRegularExpression')) {
             self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
         } else {
-            self::assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
         }
     }
 
@@ -43,7 +43,7 @@ final class ShortidTest extends TestCase
         if (\method_exists($this, 'assertMatchesRegularExpression')) {
             self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{8}$/i', $generated->__toString());
         } else {
-            self::assertRegExp('/^[a-z0-9\_\-]{8}$/i', $generated->__toString());
+            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{8}$/i', $generated->__toString());
         }
     }
 

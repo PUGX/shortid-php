@@ -8,33 +8,18 @@ use RandomLib\Generator;
 
 final class Factory
 {
-    /**
-     * @var int
-     */
-    private $length = 7;
-
-    /**
-     * @var string
-     */
-    private $alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
-
-    /**
-     * @var bool
-     */
-    private $readable = false;
-
-    /**
-     * @var RandomLibFactory
-     */
-    private static $factory;
+    private int $length = 7;
+    private string $alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
+    private bool $readable = false;
+    private static ?RandomLibFactory $factory = null;
 
     /**
      * @throws InvalidShortidException
      */
-    public function generate(int $length = null, string $alphabet = null, bool $readable = null): Shortid
+    public function generate(?int $length = null, ?string $alphabet = null, ?bool $readable = null): Shortid
     {
-        $length = $length ?? $this->length;
-        $readable = $readable ?? $this->readable;
+        $length ??= $this->length;
+        $readable ??= $this->readable;
         if (null === $alphabet && $readable) {
             $alphabet = \str_replace(\str_split(Generator::AMBIGUOUS_CHARS), '', $this->alphabet);
             $alphabet .= \str_repeat('_', \strlen(Generator::AMBIGUOUS_CHARS) / 2);
@@ -80,7 +65,7 @@ final class Factory
         return self::$factory;
     }
 
-    public function checkLength(int $length = null, bool $strict = false): void
+    public function checkLength(?int $length = null, bool $strict = false): void
     {
         if (null === $length && !$strict) {
             return;
