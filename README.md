@@ -40,7 +40,7 @@ $id = Shortid::generate();
 
 For more control, you can customize the alphabet and length using the Factory class.
 
-Default alphabet uses all letters (lowercase and uppercase), all numbers, underscore, and hypen.
+The default alphabet uses all letters (lowercase and uppercase), all numbers, underscore, and hyphen.
 
 ``` php
 use PUGX\Shortid\Factory;
@@ -52,14 +52,14 @@ $factory = new Factory();
 // alphabet string must be 64 characters long
 $factory->setAlphabet('é123456789àbcdefghìjklmnòpqrstùvwxyzABCDEFGHIJKLMNOPQRSTUVWX.!@|');
 // length must be between 2 and 20 (default is 7)
-// of course, a lower length is increasing clashing probability
+// of course, a lower length increases the clashing probability
 $factory->setLength(9);
 Shortid::setFactory($factory);
 
 $id = Shortid::generate();
 ```
 
-As alternative, you can customize single generations:
+As an alternative, you can customize single generations:
 
 ``` php
 use PUGX\Shortid\Shortid;
@@ -104,7 +104,7 @@ $anotherFixedId = new Shortid('fooBarZ');
 
 ## Doctrine
 
-If you want to use ShortId with Doctrine ORM, take a look to [ShortId Doctrine type][2].
+If you want to use ShortId with Doctrine ORM, take a look at [ShortId Doctrine type][2].
 
 
 ## Doctrine and Symfony
@@ -121,7 +121,7 @@ native extension is not available.
 If, instead, your environment is offering that extension, you can avoid installing
 that polyfill by configuring a [replace][5] entry in your `composer.json`.
 
-The same applies to the [randomLib][6] library: if you are using PHP 8.3 or higher, 
+The same applies to the [randomLib][6] library: if you are using PHP 8.3 or higher,
 you can replace it, since this library uses the native `Random` class instead.
 
 ## Contributing

@@ -2,28 +2,18 @@
 
 namespace PUGX\Shortid;
 
-final class Shortid implements \JsonSerializable, \Serializable
+final class Shortid implements \JsonSerializable, \Serializable, \Stringable
 {
-    /**
-     * @var string
-     */
-    private $id;
-
-    /**
-     * @var Factory|null
-     */
-    private static $factory;
+    private static ?Factory $factory = null;
 
     /**
      * @throws InvalidShortidException
      */
-    public function __construct(string $id, int $length = null, string $alphabet = null)
+    public function __construct(private string $id, ?int $length = null, ?string $alphabet = null)
     {
         if (!self::isValid($id, $length, $alphabet)) {
             throw new InvalidShortidException(\sprintf('Invalid shortid %s (length %d alphabet %s', $id, $length, $alphabet));
         }
-
-        $this->id = $id;
     }
 
     public function __toString(): string
@@ -34,7 +24,7 @@ final class Shortid implements \JsonSerializable, \Serializable
     /**
      * @throws InvalidShortidException
      */
-    public static function generate(int $length = null, string $alphabet = null, bool $readable = false): self
+    public static function generate(?int $length = null, ?string $alphabet = null, bool $readable = false): self
     {
         if (null === $length) {
             self::getFactory()->checkLength($length);
@@ -53,14 +43,14 @@ final class Shortid implements \JsonSerializable, \Serializable
         return self::$factory;
     }
 
-    public static function setFactory(Factory $factory = null): void
+    public static function setFactory(?Factory $factory = null): void
     {
         self::$factory = $factory;
     }
 
-    public static function isValid(string $value, int $length = null, string $alphabet = null): bool
+    public static function isValid(string $value, ?int $length = null, ?string $alphabet = null): bool
     {
-        $length = $length ?? self::getFactory()->getLength();
+        $length ??= self::getFactory()->getLength();
         $alphabet = \preg_quote($alphabet ?: self::getFactory()->getAlphabet(), '/');
         $matches = [];
         $ok = \preg_match('/^(['.$alphabet.']{'.$length.'})$/', $value, $matches);
@@ -78,12 +68,9 @@ final class Shortid implements \JsonSerializable, \Serializable
         return $this->id;
     }
 
-    /**
-     * @param string $serialized
-     */
-    public function unserialize($serialized): void
+    public function unserialize(string $data): void
     {
-        $this->id = $serialized;
+        $this->id = $data;
     }
 
     /**

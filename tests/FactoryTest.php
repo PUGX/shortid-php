@@ -8,10 +8,7 @@ use RandomLib\Factory as RandomLibFactory;
 
 final class FactoryTest extends TestCase
 {
-    /**
-     * @var Factory
-     */
-    private $factory;
+    private Factory $factory;
 
     protected function setUp(): void
     {
@@ -25,14 +22,14 @@ final class FactoryTest extends TestCase
         if (\method_exists($this, 'assertMatchesRegularExpression')) {
             self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
         } else {
-            self::assertRegExp('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
+            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
         }
     }
 
     /**
      * @return string[][]
      */
-    public function alphabetsProvider(): array
+    public static function alphabetsProvider(): array
     {
         $alphabets = [];
         $chars = [];
@@ -77,7 +74,7 @@ final class FactoryTest extends TestCase
     /**
      * @return array{test: array{'test'}, rand: array{string}}
      */
-    public function wrongAlphabetsProvider(): array
+    public static function wrongAlphabetsProvider(): array
     {
         return [
             'test' => ['test'],
