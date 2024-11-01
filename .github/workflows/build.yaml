@@ -38,8 +38,10 @@ jobs:
                       php: '8.1'
                     - description: '8.2'
                       php: '8.2'
-                    - description: 'latest'
+                    - description: '8.3'
                       php: '8.3'
+                    - description: 'latest'
+                      php: '8.4'
         name: PHP ${{ matrix.php }} tests
         steps:
             - name: Checkout
@@ -57,7 +59,7 @@ jobs:
             - run: bin/phpunit --coverage-clover=clover.xml
             - name: Code Climate Test Reporter
               uses: aktions/codeclimate-test-reporter@v1
-              if: ${{ github.event_name != 'pull_request' && matrix.php == '8.3' }}
+              if: ${{ github.event_name != 'pull_request' && matrix.php == '8.4' }}
               with:
                   codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
                   command: after-build --coverage-input-type clover
