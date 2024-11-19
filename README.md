@@ -1,6 +1,8 @@
 # ShortId
 
-[![Total Downloads](https://poser.pugx.org/pugx/shortid-php/downloads.png)](https://packagist.org/packages/pugx/shortid-php)
+[![Latest Stable Version](https://poser.pugx.org/pugx/shortid-php/v)](https://packagist.org/packages/pugx/shortid-php) 
+[![Total Downloads](https://poser.pugx.org/pugx/shortid-php/downloads)](https://packagist.org/packages/pugx/shortid-php) 
+[![PHP Version Require](https://poser.pugx.org/pugx/shortid-php/require/php)](https://packagist.org/packages/pugx/shortid-php)
 ![Build Status](https://github.com/PUGX/shortid-php/workflows/build/badge.svg)
 [![Code Climate](https://codeclimate.com/github/PUGX/shortid-php/badges/gpa.svg)](https://codeclimate.com/github/PUGX/shortid-php)
 [![Test Coverage](https://codeclimate.com/github/PUGX/shortid-php/badges/coverage.svg)](https://codeclimate.com/github/PUGX/shortid-php/coverage)
