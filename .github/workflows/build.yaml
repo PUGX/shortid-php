@@ -16,6 +16,7 @@ jobs:
               env:
                   REQUIRE_DEV: true
               with:
+                  version: 1.12.11
                   args: analyse
     cs-fixer:
         runs-on: ubuntu-24.04
