@@ -1,6 +1,11 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Call to an undefined method Random\\\\Randomizer\\:\\:getBytesFromString\\(\\)\\.$#"
+			count: 1
+			path: src/Factory.php
+
+		-
 			message: "#^Result of method PUGX\\\\Shortid\\\\Factory\\:\\:checkLength\\(\\) \\(void\\) is used\\.$#"
 			count: 1
 			path: tests/FactoryTest.php
