@@ -75,7 +75,7 @@ $id5 = Shortid::generate(5);
 ## More readable strings
 
 Sometimes, you want to avoid some ambiguous characters, like `B`/`8` or `I`/`l` (uppercase/lowercase).
-In this case, you can pass a third parameter `true` to `generate` method. Notice that in this case the alphabet
+In this case, you can pass a third parameter `true` to the `generate` method. Notice that in this case the alphabet
 will be ignored, so it makes sense to pass a null one.
 
 Example:
