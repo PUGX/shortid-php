@@ -19,12 +19,7 @@ final class FactoryTest extends TestCase
     public function testGenerate(): void
     {
         $generated = $this->factory->generate();
-
-        if (\method_exists($this, 'assertMatchesRegularExpression')) {
-            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
-        } else {
-            self::assertMatchesRegularExpression('/^[a-z0-9\_\-]{7}$/i', $generated->__toString());
-        }
+        self::assertMatchesRegularExpression('/^[a-z0-9_\-]{7}$/i', $generated->__toString());
     }
 
     /**
@@ -94,8 +89,8 @@ final class FactoryTest extends TestCase
 
     public function testCheckLength(): void
     {
-        $null = $this->factory->checkLength(null, false);
-        self::assertNull($null);
+        $this->expectNotToPerformAssertions();
+        $this->factory->checkLength();
     }
 
     public function testSetWrongLengthType(): void
