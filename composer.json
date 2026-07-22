@@ -21,7 +21,6 @@
     ],
     "require": {
         "php": "^8.2",
-        "paragonie/random-lib": "^2.0",
         "symfony/polyfill-mbstring": "^1.38"
     },
     "require-dev": {

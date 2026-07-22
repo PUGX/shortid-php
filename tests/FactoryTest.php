@@ -5,7 +5,6 @@ namespace PUGX\Shortid\Test;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use PUGX\Shortid\Factory;
-use RandomLib\Factory as RandomLibFactory;
 
 final class FactoryTest extends TestCase
 {
@@ -72,13 +71,6 @@ final class FactoryTest extends TestCase
             'test' => ['test'],
             'rand' => [\sha1((string) \random_int(0, \mt_getrandmax()))],
         ];
-    }
-
-    public function testGetFactory(): void
-    {
-        $factory = Factory::getFactory();
-
-        self::assertInstanceOf(RandomLibFactory::class, $factory);
     }
 
     public function testSetLength(): void

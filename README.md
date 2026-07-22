@@ -122,18 +122,14 @@ native extension is not available.
 If, instead, your environment is offering that extension, you can avoid installing
 that polyfill by configuring a [replace][5] entry in your `composer.json`.
 
-The same applies to the [randomLib][6] library: if you are using PHP 8.3 or higher,
-you can replace it, since this library uses the native `Random` class instead.
-
 ## Contributing
 
 Contributions are welcome. Feel free to open a Pull Request or file an issue here on GitHub!
-Please read the [contributing guidelines][7] first.
+Please read the [contributing guidelines][6] first.
 
 [1]: https://github.com/dylang/shortid
 [2]: https://github.com/PUGX/shortid-doctrine
 [3]: https://github.com/PUGX/shortid-doctrine-bundle
 [4]: https://github.com/symfony/polyfill-mbstring
 [5]: https://getcomposer.org/doc/04-schema.md#replace
-[6]: https://packagist.org/packages/paragonie/random-lib
-[7]: CONTRIBUTING.md
+[6]: CONTRIBUTING.md

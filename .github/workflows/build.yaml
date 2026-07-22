@@ -58,13 +58,10 @@ jobs:
                   dependency-versions: ${{ matrix.dependencies }}
             - name: Run tests
               run: bin/phpunit --coverage-clover=clover.xml
-            - name: Code Climate Test Reporter
-              uses: aktions/codeclimate-test-reporter@v1
-              if: ${{ github.event_name != 'pull_request' && matrix.php == '8.4' }}
+            - name: Publish code coverage
+              uses: qltysh/qlty-action/coverage@v1
+              if: ${{ github.event_name != 'pull_request' && matrix.php == '8.5' }}
               with:
-                  codeclimate-test-reporter-id: ${{ secrets.CC_TEST_REPORTER_ID }}
-                  command: after-build --coverage-input-type clover
-            - uses: codecov/codecov-action@v1
-              with:
-                  files: ./clover.xml
-
+                  token: ${{secrets.QLTY_COVERAGE_TOKEN}}
+                  format: clover
+                  files: clover.xml
