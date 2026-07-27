@@ -3,15 +3,14 @@
 namespace PUGX\Shortid;
 
 use Random\Randomizer;
-use RandomLib\Factory as RandomLibFactory;
-use RandomLib\Generator;
 
 final class Factory
 {
     private int $length = 7;
     private string $alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-';
     private bool $readable = false;
-    private static ?RandomLibFactory $factory = null;
+
+    private const AMBIGUOUS_CHARS = 'B8G6I1l|0OQDS5Z2()[]{}:;,.';
 
     /**
      * @throws InvalidShortidException
@@ -21,15 +20,11 @@ final class Factory
         $length ??= $this->length;
         $readable ??= $this->readable;
         if (null === $alphabet && $readable) {
-            $alphabet = \str_replace(\str_split(Generator::AMBIGUOUS_CHARS), '', $this->alphabet);
-            $alphabet .= \str_repeat('_', \strlen(Generator::AMBIGUOUS_CHARS) / 2);
-            $alphabet .= \str_repeat('-', \strlen(Generator::AMBIGUOUS_CHARS) / 2);
+            $alphabet = \str_replace(\str_split(self::AMBIGUOUS_CHARS), '', $this->alphabet);
+            $alphabet .= \str_repeat('_', \strlen(self::AMBIGUOUS_CHARS) / 2);
+            $alphabet .= \str_repeat('-', \strlen(self::AMBIGUOUS_CHARS) / 2);
         }
-        if (\PHP_VERSION_ID >= 80300) {
-            $id = (new Randomizer())->getBytesFromString($alphabet ?? $this->alphabet, $length);
-        } else {
-            $id = self::getFactory()->getMediumStrengthGenerator()->generateString($length, $alphabet ?? $this->alphabet);
-        }
+        $id = $this->getBytesFromString($alphabet ?? $this->alphabet, $length);
 
         return new Shortid($id, $length, $alphabet);
     }
@@ -56,15 +51,6 @@ final class Factory
         return $this->length;
     }
 
-    public static function getFactory(): RandomLibFactory
-    {
-        if (null === self::$factory) {
-            self::$factory = new RandomLibFactory();
-        }
-
-        return self::$factory;
-    }
-
     public function checkLength(?int $length = null, bool $strict = false): void
     {
         if (null === $length && !$strict) {
@@ -89,5 +75,21 @@ final class Factory
     public function setReadable(bool $readable): void
     {
         $this->readable = $readable;
+    }
+
+    // See https://www.php.net/releases/8.3/en.php#randomizer_get_bytes_from_string
+    private function getBytesFromString(string $string, int $length): string
+    {
+        if (\PHP_VERSION_ID >= 80300) {
+            return (new Randomizer())->getBytesFromString($string, $length);
+        }
+
+        $stringLength = \mb_strlen($string, 'UTF-8');
+        $result = '';
+        for ($i = 0; $i < $length; ++$i) {
+            $result .= $string[\random_int(0, $stringLength - 1)];
+        }
+
+        return $result;
     }
 }
