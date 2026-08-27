@@ -1,7 +1,7 @@
 <?php
 // see https://github.com/FriendsOfPHP/PHP-CS-Fixer
 
-$finder = PhpCsFixer\Finder::create()
+$finder = (new PhpCsFixer\Finder())
     ->in([__DIR__.'/src', __DIR__.'/tests'])
 ;
 
