@@ -25,7 +25,7 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v7
-            - name: Fix CS
+            - name: Check CS
               uses: docker://oskarstark/php-cs-fixer-ga
               with:
                 args: --diff --dry-run
@@ -42,8 +42,10 @@ jobs:
                       php: '8.3'
                     - description: '8.4'
                       php: '8.4'
-                    - description: 'latest'
+                    - description: '8.5'
                       php: '8.5'
+                    - description: 'latest'
+                      php: '8.6'
         name: PHP ${{ matrix.php }} tests
         steps:
             - name: Checkout
